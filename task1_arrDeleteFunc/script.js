@@ -1,13 +1,14 @@
 try {
-  let str = prompt('Напиши щось')
-  let el = prompt('Який символ ти хотів би прибрати?')
+  let str = check(prompt('Напиши щось'))
+  let el = check(
+    prompt('Який символ ти хотів би прибрати? Введи через пробіл')
+  ).split(' ')
   console.log(`Строка: ${str}`)
   console.log(`Ти хочеш видалити: ${el}`)
-  str = check(str)
-  el = check(el)
+
   removal(str, el)
 } catch (error) {
-  console.error(`Помилка: ${error.message}`) //може бути помилка
+  console.error(`Помилка: ${error}`) //може бути помилка
 } finally {
   console.log('Перевірено') //тобто завжди перевірить
 }
@@ -15,7 +16,6 @@ try {
 //Видалення символів
 function removal(a, b) {
   let words = a.split(' ')
-  b = b.split('')
   filteredWords = words.map((word) => {
     let letters = word.split('')
     let filteredLetters = letters.filter((i) => !b.includes(i))
